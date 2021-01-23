@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hydrangea</string>
+    <string name="internet_not_available">You are offline.</string>
+    <string name="unknown_error">Unknown error. Code: %s</string>
+</resources>
