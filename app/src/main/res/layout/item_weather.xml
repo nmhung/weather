@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <net.fitken.base.widget.RippleCardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/positive_5dp"
@@ -22,8 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:rcv_ripple_color="?attr/colorPrimary">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,6 +40,16 @@
                     tools:text="Mon, Jan 25, 2021" />
 
                 <TextView
+                    android:id="@+id/tv_avg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Avg: 30°C" />
+
+                <TextView
                     android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,8 +60,30 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_date"
                     tools:text="Light rain" />
 
+                <TextView
+                    android:id="@+id/tv_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/positive_5dp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="@dimen/text_size_12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                    tools:text="Pressure: 2321" />
+
+                <TextView
+                    android:id="@+id/tv_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/positive_5dp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="@dimen/text_size_12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                    tools:text="Humidity: 40%" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </net.fitken.base.widget.RippleCardView>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

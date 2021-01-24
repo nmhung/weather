@@ -1,10 +1,10 @@
 package net.fitken.domain.entities
 
 data class TempEntity(
-    var day: String,
-    var min: String,
-    var max: String,
-    var night: String,
-    var eve: String,
-    var morn: String
+    var day: Float,
+    var min: Float,
+    var max: Float,
+    var night: Float,
+    var eve: Float,
+    var morn: Float
 )

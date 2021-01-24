@@ -17,6 +17,12 @@ class WeatherAdapter : BaseRecyclerAdapter<WeatherAdapter.WeatherViewHolder, Wea
             super.bindData(data)
             mViewDataBinding.tvDescription.text = data.weather.firstOrNull()?.main
             mViewDataBinding.tvDate.text = data.dt.formatDate()
+            mViewDataBinding.tvAvg.text =
+                String.format(itemView.context.getString(R.string.average), data.temp.getAverage())
+            mViewDataBinding.tvPressure.text =
+                String.format(itemView.context.getString(R.string.pressure), data.pressure)
+            mViewDataBinding.tvHumidity.text =
+                String.format(itemView.context.getString(R.string.humidity), data.humidity)
         }
     }
 

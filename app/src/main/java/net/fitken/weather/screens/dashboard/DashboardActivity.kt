@@ -54,7 +54,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     override fun onStart() {
         super.onStart()
         mViewModel.getWeathers().observe(this, {
-            Rose.error("co nekk")
             mAdapter.update(it.result)
             mViewDataBinding.city = it.city.name
         })
