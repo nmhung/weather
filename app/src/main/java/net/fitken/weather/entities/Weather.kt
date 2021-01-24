@@ -1,5 +1,8 @@
 package net.fitken.weather.entities
 
 data class Weather(
-    var date: String?
+    var id: Int,
+    var main: String,
+    var description: String,
+    var icon: String
 )

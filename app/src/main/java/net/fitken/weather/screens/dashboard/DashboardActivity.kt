@@ -2,12 +2,15 @@ package net.fitken.weather.screens.dashboard
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import com.jakewharton.rxbinding.widget.RxTextView
 import dagger.hilt.android.AndroidEntryPoint
 import net.fitken.base.activity.BaseActivity
 import net.fitken.base.recyclerview.VerticalLinearItemDecoration
+import net.fitken.rose.Rose
 import net.fitken.weather.R
 import net.fitken.weather.databinding.ActivityDashboardBinding
+import rx.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
@@ -31,17 +34,36 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
             )
         )
 
-        mViewModel.search("saigon")
-
+        RxTextView.textChanges(mViewDataBinding.etSearch)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .filter {
+                return@filter it.length > 3
+            }
+            .map {
+                return@map it.toString()
+            }
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                mViewModel.search(it)
+            }, {
+                it.printStackTrace()
+            })
     }
 
     override fun onStart() {
         super.onStart()
-        mViewModel.getWeathers().observe(this, Observer {
-            mAdapter.update(it)
+        mViewModel.getWeathers().observe(this, {
+            Rose.error("co nekk")
+            mAdapter.update(it.result)
+            mViewDataBinding.city = it.city.name
         })
-        mViewModel.getError().observe(this, Observer {
-            showError(it)
+        mViewModel.getError().observe(this, {
+//            showError(it)
+            mViewDataBinding.isError = it != null
+        })
+        mViewModel.isLoading().observe(this, {
+            mViewDataBinding.isLoading = it
         })
     }
 }

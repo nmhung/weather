@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <variable
+            name="city"
+            type="String" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:fitsSystemWindows="true"
         tools:context=".screens.dashboard.DashboardActivity">
 
@@ -21,39 +39,77 @@
             app:rll_normal_color="?android:attr/colorControlHighlight">
 
             <EditText
+                android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="Search"
                 android:background="@null"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/positive_5dp"
-                android:hint="Search"
+                android:hint="@string/search"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords"
+                android:lines="1"
                 android:padding="@dimen/positive_10dp"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="@dimen/text_size_12sp" />
         </net.fitken.base.widget.RippleLinearLayout>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/srl_weathers"
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/positive_10dp"
+            android:layout_marginEnd="@dimen/positive_10dp"
+            android:indeterminateOnly="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_search" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/positive_10dp"
+            android:text="@{city}"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/text_size_14sp"
+            android:visibility="@{isError ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/rv_weathers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+            tools:text="Ho Chi Minh" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_weathers"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:orientation="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="vertical"
+            android:visibility="@{isError ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_search">
+            app:layout_constraintTop_toBottomOf="@+id/tv_city"
+            tools:listitem="@layout/item_weather" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_weathers"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:scrollbarStyle="insideOverlay"
-                android:scrollbars="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_weather" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/positive_10dp"
+            android:text="@string/please_input_a_city"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/text_size_12sp"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

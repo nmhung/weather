@@ -6,14 +6,17 @@ import androidx.databinding.DataBindingUtil
 import net.fitken.base.recyclerview.BaseRecyclerAdapter
 import net.fitken.weather.R
 import net.fitken.weather.databinding.ItemWeatherBinding
-import net.fitken.weather.entities.Weather
+import net.fitken.weather.entities.WeatherOfDay
+import net.fitken.weather.utils.formatDate
 
-class WeatherAdapter : BaseRecyclerAdapter<WeatherAdapter.WeatherViewHolder, Weather>() {
+class WeatherAdapter : BaseRecyclerAdapter<WeatherAdapter.WeatherViewHolder, WeatherOfDay>() {
 
     class WeatherViewHolder(itemWeatherBinding: ItemWeatherBinding) :
-        BaseRecyclerAdapter.BaseHolder<ItemWeatherBinding, Weather>(itemWeatherBinding) {
-        override fun bindData(data: Weather) {
+        BaseRecyclerAdapter.BaseHolder<ItemWeatherBinding, WeatherOfDay>(itemWeatherBinding) {
+        override fun bindData(data: WeatherOfDay) {
             super.bindData(data)
+            mViewDataBinding.tvDescription.text = data.weather.firstOrNull()?.main
+            mViewDataBinding.tvDate.text = data.dt.formatDate()
         }
     }
 

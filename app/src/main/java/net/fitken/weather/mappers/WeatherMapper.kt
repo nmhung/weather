@@ -6,7 +6,7 @@ import net.fitken.weather.entities.Weather
 object WeatherMapper {
     fun mapWeatherToPresentation(weatherEntity: WeatherEntity): Weather {
         return Weather(
-            weatherEntity.date
+            weatherEntity.id, weatherEntity.main, weatherEntity.description, weatherEntity.icon
         )
     }
 }
