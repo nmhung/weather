@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import net.fitken.data.api.WeatherService
+import net.fitken.data.db.WeatherLocalCache
 import net.fitken.data.repositories.WeatherRepositoryImpl
 import net.fitken.domain.repository.WeatherRepository
 import retrofit2.Retrofit
@@ -27,7 +28,10 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideWeatherRepository(weatherService: WeatherService): WeatherRepository {
-        return WeatherRepositoryImpl(weatherService)
+    fun provideWeatherRepository(
+        weatherService: WeatherService,
+        weatherLocalCache: WeatherLocalCache
+    ): WeatherRepository {
+        return WeatherRepositoryImpl(weatherService, weatherLocalCache)
     }
 }

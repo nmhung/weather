@@ -40,7 +40,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
                     return@filter it.length >= 3
                 }
                 .map {
-                    return@map it.toString()
+                    return@map it.trim().toString()
                 }
                 .skip(if (mViewDataBinding.etSearch.text.length >= 3) 1 else 0)
                 .subscribeOn(AndroidSchedulers.mainThread())

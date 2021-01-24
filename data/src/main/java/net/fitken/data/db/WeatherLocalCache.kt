@@ -1,7 +1,6 @@
 package net.fitken.data.db
 
-import androidx.paging.DataSource
-import net.fitken.data.entities.WeatherOfDayData
+import net.fitken.data.entities.DataByQuery
 
 /**
  * Class that handles the DAO local data source.
@@ -10,25 +9,18 @@ class WeatherLocalCache(
         private val database: WeatherDatabase
 ) {
 
-    /**
-     * Insert a list of weathers in the database, on a background thread.
-     */
-//    suspend fun insert(weatherOfDays: List<WeatherOfDayData>) {
-//        database.getWeatherDao().insert(weatherOfDays)
-//    }
+        /**
+         * Insert a weather data by query in the database, on a background thread.
+         */
+        suspend fun insert(dataByQuery: DataByQuery) {
+                database.getDataByQueryDao().insert(dataByQuery)
+        }
 
-    /**
-     * Request a LiveData<List<WeatherData>> from the Dao.
-     */
-//    fun getAll(): DataSource.Factory<Int, WeatherOfDayData> {
-//        return database.getWeatherDao().getAll()
-//    }
+        suspend fun getDataByQuery(query: String): DataByQuery? {
+                return database.getDataByQueryDao().getDataByQuery(query)
+        }
 
-//    suspend fun getWeather(id: Int): WeatherOfDayData {
-//        return database.getWeatherDao().getWeather(id)
-//    }
-
-//    suspend fun updateWeather(weatherOfDayData: WeatherOfDayData) {
-//        database.getWeatherDao().updateWeather(weatherOfDayData)
-//    }
+        suspend fun updateDataByQuery(dataByQuery: DataByQuery) {
+                database.getDataByQueryDao().updateDataByQuery(dataByQuery)
+        }
 }
