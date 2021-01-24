@@ -33,21 +33,24 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
             )
         )
 
-        RxTextView.textChanges(mViewDataBinding.etSearch)
-            .debounce(500, TimeUnit.MILLISECONDS)
-            .filter {
-                return@filter it.length >= 3
-            }
-            .map {
-                return@map it.toString()
-            }
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mViewModel.search(it)
-            }, {
-                it.printStackTrace()
-            })
+        mViewDataBinding.etSearch.postDelayed({
+            RxTextView.textChanges(mViewDataBinding.etSearch)
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .filter {
+                    return@filter it.length >= 3
+                }
+                .map {
+                    return@map it.toString()
+                }
+                .skip(if (mViewDataBinding.etSearch.text.length >= 3) 1 else 0)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mViewModel.search(it)
+                }, {
+                    it.printStackTrace()
+                })
+        }, 700L)
     }
 
     override fun onStart() {
