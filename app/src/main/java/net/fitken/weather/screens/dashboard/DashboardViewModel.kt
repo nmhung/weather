@@ -14,9 +14,9 @@ class DashboardViewModel @ViewModelInject constructor(
     private val mGetDailyForecastUseCase: GetDailyForecastUseCase
 ) : BaseViewModel() {
 
-    private var mDailyForecast: LiveData<DailyForecast>? = null
+    private var mDailyForecast: LiveData<DailyForecast?>? = null
     private var mIsLoading = MutableLiveData(false)
-    private var mError: MutableLiveData<Exception?> = MutableLiveData(Exception("No data"))
+    private var mError: MutableLiveData<Exception?> = MutableLiveData(null)
     private var mQuery = MutableLiveData<String>()
 
     private val mInteractor = object : Interactor {
@@ -30,7 +30,7 @@ class DashboardViewModel @ViewModelInject constructor(
     }
 
 
-    fun getWeathers(): LiveData<DailyForecast> {
+    fun getWeathers(): LiveData<DailyForecast?> {
         if (mDailyForecast == null) {
             mDailyForecast = MutableLiveData()
             loadWeathers()

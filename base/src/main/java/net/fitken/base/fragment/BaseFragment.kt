@@ -11,10 +11,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
 import androidx.transition.TransitionInflater
-import com.google.android.material.snackbar.Snackbar
 import net.fitken.base.R
 import net.fitken.base.activity.BaseActivity
-import net.fitken.base.exception.NoInternetException
 
 
 abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
@@ -67,18 +65,6 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     }
 
     fun showError(exception: Exception?) {
-        exception?.let {
-            var message = String.format(getString(R.string.unknown_error), it.localizedMessage)
-            when (it) {
-                is NoInternetException -> {
-                    message = getString(R.string.internet_not_available)
-                }
-                else -> {
-
-                }
-            }
-            Snackbar.make(mViewDataBinding.root, message, Snackbar.LENGTH_LONG)
-                    .show()
-        }
+        (requireActivity() as BaseActivity<*>).showError(exception)
     }
 }

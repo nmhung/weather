@@ -6,7 +6,6 @@ import com.jakewharton.rxbinding.widget.RxTextView
 import dagger.hilt.android.AndroidEntryPoint
 import net.fitken.base.activity.BaseActivity
 import net.fitken.base.recyclerview.VerticalLinearItemDecoration
-import net.fitken.rose.Rose
 import net.fitken.weather.R
 import net.fitken.weather.databinding.ActivityDashboardBinding
 import rx.android.schedulers.AndroidSchedulers
@@ -37,7 +36,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
         RxTextView.textChanges(mViewDataBinding.etSearch)
             .debounce(500, TimeUnit.MILLISECONDS)
             .filter {
-                return@filter it.length > 3
+                return@filter it.length >= 3
             }
             .map {
                 return@map it.toString()
@@ -54,12 +53,14 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     override fun onStart() {
         super.onStart()
         mViewModel.getWeathers().observe(this, {
-            mAdapter.update(it.result)
-            mViewDataBinding.city = it.city.name
+            it?.let { dailyForecast ->
+                mAdapter.update(dailyForecast.result)
+                mViewDataBinding.city = dailyForecast.city.name
+            }
+            mViewDataBinding.isHaveData = it != null
         })
         mViewModel.getError().observe(this, {
-//            showError(it)
-            mViewDataBinding.isError = it != null
+            showError(it)
         })
         mViewModel.isLoading().observe(this, {
             mViewDataBinding.isLoading = it
