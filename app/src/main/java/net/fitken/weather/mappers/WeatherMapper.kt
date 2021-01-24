@@ -1,0 +1,12 @@
+package net.fitken.weather.mappers
+
+import net.fitken.domain.entities.WeatherEntity
+import net.fitken.weather.entities.Weather
+
+object WeatherMapper {
+    fun mapWeatherToPresentation(weatherEntity: WeatherEntity): Weather {
+        return Weather(
+            weatherEntity.id, weatherEntity.main, weatherEntity.description, weatherEntity.icon
+        )
+    }
+}

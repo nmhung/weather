@@ -1,11 +1,8 @@
 package net.fitken.data.entities
 
-import com.squareup.moshi.Json
+import androidx.room.Entity
 
 class DailyForecastData(
-        var page: Int,
-        @Json(name = "total_results")
-        var totalResults: Int,
-        @Json(name = "total_pages")
-        var totalPages: Int,
+        var city: CityData,
+        var list: List<WeatherOfDayData>
 )

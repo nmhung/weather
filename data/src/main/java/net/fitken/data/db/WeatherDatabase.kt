@@ -2,9 +2,15 @@ package net.fitken.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import net.fitken.data.entities.WeatherData
+import androidx.room.TypeConverters
+import net.fitken.data.converters.*
+import net.fitken.data.entities.DataByQuery
 
-@Database(entities = [WeatherData::class], version = 1)
+@Database(entities = [DataByQuery::class], version = 1)
+@TypeConverters(
+    value = [CityConverter::class, DailyForecastConverter::class, TempConverter::class,
+        WeatherConverter::class, WeatherOfDayConverter::class]
+)
 abstract class WeatherDatabase : RoomDatabase() {
-    abstract fun getWeatherDao(): WeatherDao
+    abstract fun getDataByQueryDao(): DataByQueryDao
 }

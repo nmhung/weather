@@ -14,7 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-private const val QUERY_API_KEY = "api_key"
+private const val QUERY_API_KEY = "appid"
 
 fun createNetworkClient(baseUrl: String, context: Context) =
         retrofitClient(baseUrl, httpClient(context))
