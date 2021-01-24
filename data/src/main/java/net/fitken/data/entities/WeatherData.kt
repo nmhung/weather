@@ -15,5 +15,6 @@ data class WeatherData(
 
         @Json(name = "original_title")
         var originalTitle: String? = null,
+        var date: String? = null
 
         ) : Parcelable
