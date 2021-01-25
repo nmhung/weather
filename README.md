@@ -34,6 +34,7 @@ Here's a walkthrough of implemented user stories:
 ## Module structure
 
 MVVM and Clean Architecture
+<img src="/art/architecture.png?raw=true" width="480px">
 
 - #### Base module
 

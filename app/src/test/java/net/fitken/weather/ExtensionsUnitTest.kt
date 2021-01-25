@@ -1,7 +1,6 @@
 package net.fitken.weather
 
 import android.text.format.DateFormat
-import io.mockk.mockkStatic
 import net.fitken.weather.utils.timestampToDate
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.equalTo
