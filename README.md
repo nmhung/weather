@@ -82,7 +82,9 @@ Based on `Material` design & animations.
 - Separate *dev* and *prod* with [build variants](https://developer.android.com/studio/build/build-variants).
 
 ## Run
-- Android Studio 4.1.2 stable.
+Use Android Studio 4.1.2 stable.
+1. File -> Sync Project with Gradle Files
+2. Run -> Run 'app'
 
 ## License
 
