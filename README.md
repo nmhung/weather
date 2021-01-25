@@ -33,12 +33,19 @@ Here's a walkthrough of implemented user stories:
 
 ## Module structure
 
-MVVM and Clean Architecture
 <img src="/art/architecture.png?raw=true" width="480px">
 
 - #### Base module
 
     [Base module](/base) composed of base classes for activity, fragment, dialog, recyclerview,... which are contains common actions.
+
+- #### App module
+    [App module](/app) is the implementation of user interfaces on the application.
+Based on mvvm architecture (view-databinding-viewmodel-model) with the repository pattern.
+
+- #### Domain module
+
+    [Domain module](/domain) composed of use cases of the app.
 
 - #### Data module
 
@@ -46,14 +53,7 @@ MVVM and Clean Architecture
 
 
 
-- #### Domain module
 
-    [Domain module](/domain) composed of use cases of the app.
-
-
-- #### App module
-    [App module](/app) is the implementation of user interfaces on the application.
-Based on mvvm architecture (view-databinding-viewmodel-model) with the repository pattern.
 
 ## Frameworks and Libraries
 - [Retrofit2](https://github.com/square/retrofit) - constructing the REST API.
