@@ -33,6 +33,8 @@ Here's a walkthrough of implemented user stories:
 
 ## Module structure
 
+In this sample I tried to follow the [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [MVVM pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
+
 <img src="/art/architecture.png?raw=true" width="480px">
 
 - #### Base module
