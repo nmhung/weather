@@ -30,11 +30,58 @@ Here's a walkthrough of implemented user stories:
 
 <img src="/art/walkthrough.gif?raw=true" width="320px">
 
+
+## Module structure
+
+MVVM and Clean Architecture
+
+- #### Base module
+
+    [Base module](/base) composed of base classes for activity, fragment, dialog, recyclerview,... which are contains common actions.
+
+- #### Data module
+
+    [Data module](/data) composed of handle database queries and networking requests.
+
+
+
+- #### Domain module
+
+    [Domain module](/domain) composed of use cases of the app.
+
+
+- #### App module
+    [App module](/app) is the implementation of user interfaces on the application.
+Based on mvvm architecture (view-databinding-viewmodel-model) with the repository pattern.
+
+## Frameworks and Libraries
+- [Retrofit2](https://github.com/square/retrofit) - constructing the REST API.
+- [Logging Interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor) - logs HTTP request and response data.
+- Moshi for Json Parsing
+- JetPack
+  - LiveData - notify domain layer data to views.
+  - Lifecycle - dispose observing data when lifecycle state changes.
+  - ViewModel - UI related data holder, lifecycle aware.
+  - Room database - Local database for the app with SQLite.
+- [Hilt](https://dagger.dev/hilt) - constructing dependency injection framework based on compile-time.
+- [Coroutines](https://developer.android.com/kotlin/coroutines)
+- [Data Binding](https://developer.android.com/topic/libraries/data-binding)
+- [Lottie Android](https://github.com/airbnb/lottie-android)
+- [RxBinding](https://github.com/JakeWharton/RxBinding)
+
+
+## User Interface Design
+Based on `Material` design & animations.
+
+- Google Material Design.
+- Ripple Effect.
+
 ## Notes
+- The app is using [proguard](https://developer.android.com/studio/build/shrink-code) to avoid reverse engineer.
+- Separate *dev* and *prod* with [build variants](https://developer.android.com/studio/build/build-variants).
 
-
-## Open-source libraries used
-
+## Run
+- Android Studio 4.1.2 stable.
 
 ## License
 
