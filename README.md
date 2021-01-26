@@ -73,12 +73,6 @@ Based on mvvm architecture (view-databinding-viewmodel-model) with the repositor
 - [RxBinding](https://github.com/JakeWharton/RxBinding)
 
 
-## User Interface Design
-Based on `Material` design & animations.
-
-- Google Material Design.
-- Ripple Effect.
-
 ## Notes
 - The app is using [proguard](https://developer.android.com/studio/build/shrink-code) to avoid reverse engineer.
 - Separate *dev* and *prod* with [build variants](https://developer.android.com/studio/build/build-variants).

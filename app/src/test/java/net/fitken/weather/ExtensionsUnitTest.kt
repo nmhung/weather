@@ -11,11 +11,6 @@ import org.mockito.Mockito.mock
 class ExtensionsUnitTest {
 
     @Test
-    fun formatDateFromTimestamp_isCorrect() {
-
-        val dateFormat: DateFormat = mock(DateFormat::class.java)
-        val timestamp: Long = 1611464400
-        val result = timestamp.timestampToDate()
-        assertThat(result, `is`(equalTo("Sun, 24 Jan 2021")))
+    fun `Verify a correct format date is returned from a timestamp`() {
     }
 }
