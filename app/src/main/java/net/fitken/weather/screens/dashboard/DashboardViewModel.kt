@@ -1,6 +1,5 @@
 package net.fitken.weather.screens.dashboard
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import net.fitken.base.viewmodel.BaseViewModel
@@ -10,7 +9,6 @@ import net.fitken.weather.entities.DailyForecast
 import net.fitken.weather.mappers.DailyForecastMapper
 
 class DashboardViewModel @ViewModelInject constructor(
-    @Assisted private val savedState: SavedStateHandle,
     private val mGetDailyForecastUseCase: GetDailyForecastUseCase
 ) : BaseViewModel() {
 
@@ -48,9 +46,11 @@ class DashboardViewModel @ViewModelInject constructor(
 
     private fun loadWeathers() {
         mDailyForecast = Transformations.switchMap(mQuery) { it ->
+            mIsLoading.postValue(true)
             val result = executeLiveDataTask {
                 mGetDailyForecastUseCase.invoke(viewModelScope, mInteractor, it)
             }
+            mIsLoading.postValue(false)
             Transformations.map(result) { dailyForecastEntity ->
                 return@map DailyForecastMapper.mapDailyForecastToPresentation(dailyForecastEntity)
             }

@@ -35,7 +35,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
 
         mViewDataBinding.etSearch.postDelayed({
             RxTextView.textChanges(mViewDataBinding.etSearch)
-                .debounce(500, TimeUnit.MILLISECONDS)
+                .debounce(700, TimeUnit.MILLISECONDS)
                 .filter {
                     return@filter it.length >= 3
                 }
